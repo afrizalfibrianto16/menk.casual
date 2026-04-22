@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menk Casual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0D0C0A;
+    --bg2: #141210;
+    --card: #1A1714;
+    --border: #2A2520;
+    --border-hover: #C9A96E;
+    --gold: #C9A96E;
+    --gold-dim: rgba(201,169,110,0.15);
+    --white: #F5F2ED;
+    --gray: #6B6560;
+    --gray-light: #9A948C;
+  }
+
+  html, body {
+    min-height: 100%;
+    background-color: var(--bg);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(ellipse, rgba(201,169,110,0.07) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 52px 24px 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* HEADER */
+  .header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 36px;
+    animation: fadeUp 0.9s ease both;
+  }
+
+  .logo-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 22px;
+  }
+
+  .logo-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    border-top-color: var(--gold);
+    border-right-color: rgba(201,169,110,0.3);
+    animation: spin 8s linear infinite;
+  }
+
+  .logo-ring-2 {
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,169,110,0.12);
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .logo-circle {
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    background: var(--card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.1rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 7px;
+  }
+
+  .brand-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+
+  .gold-line {
+    width: 48px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 16px;
+  }
+
+  .bio-text {
+    font-size: 0.8rem;
+    color: var(--gray-light);
+    letter-spacing: 0.04em;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  /* STATS */
+  .stats {
+    display: flex;
+    margin-bottom: 40px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    width: 100%;
+    animation: fadeUp 0.9s 0.1s ease both;
+  }
+
+  .stat {
+    flex: 1;
+    text-align: center;
+    padding: 14px 8px;
+    border-right: 1px solid var(--border);
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+
+  /* BUTTONS */
+  .section-label {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 6px 0 10px;
+  }
+
+  .section-label span {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gray);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  .section-label::before,
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 16px 20px;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: var(--card);
+    color: var(--white);
+    transition: all 0.22s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, var(--gold-dim), transparent);
+    opacity: 0;
+    transition: opacity 0.22s ease;
+  }
+
+  .btn:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+
+  .btn:hover::after { opacity: 1; }
+
+  .btn-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    transition: border-color 0.22s ease;
+  }
+
+  .btn:hover .btn-icon { border-color: var(--gold); }
+
+  .btn-icon.gold-bg {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .btn-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+
+  .btn-sub {
+    font-size: 0.7rem;
+    color: var(--gray-light);
+    font-weight: 300;
+  }
+
+  .btn-arrow {
+    color: var(--gold);
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    position: relative;
+    z-index: 1;
+    transform: translateX(-4px);
+  }
+
+  .btn:hover .btn-arrow { opacity: 1; transform: translateX(0); }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 52px;
+    text-align: center;
+    animation: fadeUp 0.8s 0.8s ease both;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--border);
+    font-weight: 300;
+  }
+
+  .location-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.65rem;
+    color: var(--gray);
+    letter-spacing: 0.08em;
+    margin-top: 5px;
+    font-weight: 300;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .a1 { animation: fadeUp 0.6s 0.25s ease both; }
+  .a2 { animation: fadeUp 0.6s 0.35s ease both; }
+  .a3 { animation: fadeUp 0.6s 0.45s ease both; }
+  .a4 { animation: fadeUp 0.6s 0.55s ease both; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="logo-wrap">
+      <div class="logo-ring"></div>
+      <div class="logo-ring-2"></div>
+      <div class="logo-circle">
+        <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Hood shape -->
+          <path d="M25 5C17 5 12 11.5 12 19C12 23.5 13.5 27 16 29L15 42C15 43.1 15.9 44 17 44H33C34.1 44 35 43.1 35 42L34 29C36.5 27 38 23.5 38 19C38 11.5 33 5 25 5Z" stroke="#C9A96E" stroke-width="1.1" fill="none" stroke-linejoin="round"/>
+          <!-- Hood center seam -->
+          <line x1="25" y1="5" x2="25" y2="14" stroke="#C9A96E" stroke-width="0.7" stroke-linecap="round" opacity="0.4"/>
+          <!-- Balaclava eye cutout -->
+          <rect x="16" y="17" width="7" height="4" rx="2" stroke="#C9A96E" stroke-width="0.9" fill="none"/>
+          <rect x="27" y="17" width="7" height="4" rx="2" stroke="#C9A96E" stroke-width="0.9" fill="none"/>
+          <!-- Eye glint dots -->
+          <circle cx="19" cy="19" r="0.9" fill="#C9A96E"/>
+          <circle cx="30" cy="19" r="0.9" fill="#C9A96E"/>
+          <!-- Mask bottom edge / mouth area lines -->
+          <line x1="18" y1="25" x2="32" y2="25" stroke="#C9A96E" stroke-width="0.8" stroke-linecap="round" opacity="0.7"/>
+          <line x1="19" y1="28" x2="31" y2="28" stroke="#C9A96E" stroke-width="0.8" stroke-linecap="round" opacity="0.5"/>
+          <line x1="20" y1="31" x2="30" y2="31" stroke="#C9A96E" stroke-width="0.8" stroke-linecap="round" opacity="0.3"/>
+          <!-- Shoulder line -->
+          <path d="M15 42C12 44 10 46 10 47H40C40 46 38 44 35 42" stroke="#C9A96E" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="brand-name">Menk Casual</div>
+    <div class="brand-sub">Stone Island · CP Company · On Request</div>
+    <div class="gold-line"></div>
+    <div class="bio-text">
+      Ready Stock &amp; On Request<br>
+      📍 Malang — Ship Nationwide 🇮🇩
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">118</div>
+      <div class="stat-label">Post</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">684</div>
+      <div class="stat-label">Followers</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">11.2K</div>
+      <div class="stat-label">Views/30d</div>
+    </div>
+  </div>
+
+  <div class="section-label"><span>Hubungi Kami</span></div>
+  <div class="buttons">
+
+    <a href="https://wa.me/6289686919685?text=Halo%20Menk%20Casual%2C%20saya%20mau%20tanya%20produk" class="btn a1" target="_blank">
+      <div class="btn-left">
+        <div class="btn-icon gold-bg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </div>
+        <div class="btn-text">
+          <div class="btn-title">WhatsApp Admin 1</div>
+          <div class="btn-sub">0896-8691-9685 · Fast Response</div>
+        </div>
+      </div>
+      <span class="btn-arrow">→</span>
+    </a>
+
+    <a href="https://wa.me/6289504995778?text=Halo%20Menk%20Casual%2C%20saya%20mau%20tanya%20produk" class="btn a2" target="_blank">
+      <div class="btn-left">
+        <div class="btn-icon gold-bg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </div>
+        <div class="btn-text">
+          <div class="btn-title">WhatsApp Admin 2</div>
+          <div class="btn-sub">0895-0499-5778 · Fast Response</div>
+        </div>
+      </div>
+      <span class="btn-arrow">→</span>
+    </a>
+
+    <div class="section-label"><span>Explore</span></div>
+
+    <a href="https://www.instagram.com/menk.casual" class="btn a3" target="_blank">
+      <div class="btn-left">
+        <div class="btn-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="#C9A96E"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </div>
+        <div class="btn-text">
+          <div class="btn-title">Instagram</div>
+          <div class="btn-sub">@menk.casual · Lihat Katalog</div>
+        </div>
+      </div>
+      <span class="btn-arrow">→</span>
+    </a>
+
+    <a href="https://www.instagram.com/selection.kay" class="btn a4" target="_blank">
+      <div class="btn-left">
+        <div class="btn-icon">
+          <span style="color:#C9A96E;font-size:1rem;">🏷</span>
+        </div>
+        <div class="btn-text">
+          <div class="btn-title">Selection Kay</div>
+          <div class="btn-sub">Partner Store · Koleksi Pilihan</div>
+        </div>
+      </div>
+      <span class="btn-arrow">→</span>
+    </a>
+
+  </div>
+
+  <div class="footer">
+    <div class="gold-line" style="margin-bottom:16px;"></div>
+    <div class="footer-brand">Menk Casual</div>
+    <div class="location-tag">📍 South Malang, East Java · Ship Nationwide</div>
+  </div>
+
+</div>
+</body>
+</html>
